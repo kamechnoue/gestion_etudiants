@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component classes */
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-colors duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-primary-lg {
+    @apply px-6 py-3 text-lg bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-colors duration-200 shadow-card hover:shadow-lg;
+  }
+
+  .btn-success {
+    @apply px-4 py-2 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 active:bg-green-700 transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-success-lg {
+    @apply px-6 py-3 text-lg bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 active:bg-green-700 transition-colors duration-200 shadow-card;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 active:bg-red-700 transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-danger-lg {
+    @apply px-6 py-3 text-lg bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 active:bg-red-700 transition-colors duration-200 shadow-card;
+  }
+
+  .btn-info {
+    @apply px-4 py-2 bg-cyan-500 text-white font-medium rounded-lg hover:bg-cyan-600 active:bg-cyan-700 transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-info-lg {
+    @apply px-6 py-3 text-lg bg-cyan-500 text-white font-semibold rounded-lg hover:bg-cyan-600 active:bg-cyan-700 transition-colors duration-200 shadow-card;
+  }
+
+  .btn-warning {
+    @apply px-4 py-2 bg-amber-500 text-white font-medium rounded-lg hover:bg-amber-600 active:bg-amber-700 transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-warning-lg {
+    @apply px-6 py-3 text-lg bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 active:bg-amber-700 transition-colors duration-200 shadow-card;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-slate-500 text-white font-medium rounded-lg hover:bg-slate-600 active:bg-slate-700 transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-secondary-lg {
+    @apply px-6 py-3 text-lg bg-slate-500 text-white font-semibold rounded-lg hover:bg-slate-600 active:bg-slate-700 transition-colors duration-200 shadow-card;
+  }
+
+  .btn-outline-primary {
+    @apply px-4 py-2 border border-blue-500 text-blue-500 font-medium rounded-lg hover:bg-blue-50 transition-colors duration-200;
+  }
+
+  .btn-outline-danger {
+    @apply px-4 py-2 border border-red-500 text-red-500 font-medium rounded-lg hover:bg-red-50 transition-colors duration-200;
+  }
+
+  .btn-outline-light {
+    @apply px-4 py-2 border border-white text-white font-medium rounded-lg hover:bg-white hover:text-slate-900 transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-card p-6;
+  }
+
+  .card-dark {
+    @apply bg-slate-800 rounded-xl shadow-card p-6;
+  }
+
+  .alert {
+    @apply px-4 py-3 rounded-lg font-medium;
+  }
+
+  .alert-info {
+    @apply bg-blue-50 text-blue-800 border border-blue-200;
+  }
+
+  .alert-danger {
+    @apply bg-red-50 text-red-800 border border-red-200;
+  }
+
+  .alert-warning {
+    @apply bg-amber-50 text-amber-800 border border-amber-200;
+  }
+
+  .alert-success {
+    @apply bg-green-50 text-green-800 border border-green-200;
+  }
+
+  .form-control {
+    @apply w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-slate-700 mb-2;
+  }
+
+  .table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .table thead {
+    @apply bg-slate-800 text-white;
+  }
+
+  .table th {
+    @apply px-4 py-3 text-left font-semibold;
+  }
+
+  .table td {
+    @apply px-4 py-3 border-b border-slate-200;
+  }
+
+  .table tbody tr {
+    @apply hover:bg-slate-50 transition-colors;
+  }
+
+  .img-thumbnail {
+    @apply border border-slate-200 rounded-lg p-2;
+  }
+
+  .navbar {
+    @apply bg-slate-900 text-white shadow-lg;
+  }
+
+  .navbar-brand {
+    @apply text-xl font-bold;
+  }
+
+  .dropdown-item {
+    @apply block w-full px-4 py-2 text-left hover:bg-slate-100 cursor-pointer transition-colors;
+  }
+
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-primary {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Light theme base styles */
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900;
+  }
+
+  h1 {
+    @apply text-3xl font-bold text-slate-900;
+  }
+
+  h2 {
+    @apply text-2xl font-bold text-slate-900;
+  }
+
+  h3 {
+    @apply text-xl font-semibold text-slate-900;
+  }
+
+  h4, h5, h6 {
+    @apply font-semibold text-slate-900;
+  }
+
+  a {
+    @apply text-blue-500 hover:text-blue-600 cursor-pointer;
+  }
+}
