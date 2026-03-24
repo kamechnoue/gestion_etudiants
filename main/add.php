@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user'])) { 
-    header("Location: index.php"); 
+    header("Location: ../index.php"); 
     exit; 
 }
 
@@ -18,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($_FILES['photo']['tmp_name'], "photos/" . $photo);
     }
 
-    $file = fopen("etudiants.csv", "a");
+    $file = fopen("../data/etudiants.csv", "a");
     fputcsv($file, [$id, $nom, $prenom, $tel, $email, $photo]);
     fclose($file);
 
-    header("Location: dashboard.php");
+    header("Location: ../main/dashboard.php");
     exit;
 }
 ?>

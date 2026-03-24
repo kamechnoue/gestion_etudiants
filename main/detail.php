@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!($_SESSION['user'] ?? false)) { 
-    header("Location: index.php"); 
+    header("Location: ../index.php"); 
     exit; 
 }
 
@@ -11,7 +11,7 @@ if ($id === null || $id === '') {
 }
 
 $rows = [];
-$file = fopen("etudiants.csv", "r");
+$file = fopen("../data/etudiants.csv", "r");
 while (($data = fgetcsv($file)) !== FALSE) { $rows[] = $data; }
 fclose($file);
 
@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $file = fopen("etudiants.csv", "w");
+    $file = fopen("../data/etudiants.csv", "w");
     foreach ($rows as $row) { fputcsv($file, $row); }
     fclose($file);
 
-    header("Location: dashboard.php");
+    header("Location: ../main/dashboard.php");
     exit;
 }
 ?>
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="dashboard.php">Gestion Étudiants</a>
-    <a href="logout.php" class="btn btn-outline-light">Logout</a>
+    <a href="../auth/logout.php" class="btn btn-outline-light">Logout</a>
   </div>
 </nav>
 
@@ -136,7 +136,7 @@ function uploadPhoto(file) {
   formData.append("photo", file);
   formData.append("id", studentId);
 
-  fetch("upload_photo.php", {
+  fetch("../utils/upload_photo.php", {
     method: "POST",
     body: formData
   })

@@ -12,7 +12,7 @@ if ($id === null || $id === '') {
 
 // Lecture du fichier CSV
 $rows = [];
-if (($file = fopen("etudiants.csv", "r")) !== false) {
+if (($file = fopen("../data/etudiants.csv", "r")) !== false) {
     while (($data = fgetcsv($file)) !== false) {
         $rows[] = $data;
     }
@@ -35,7 +35,7 @@ foreach ($rows as $row) {
 }
 
 // Réécriture du fichier CSV
-$file = fopen("etudiants.csv", "w");
+$file = fopen("../data/etudiants.csv", "w");
 foreach ($newRows as $row) {
     fputcsv($file, $row);
 }
@@ -52,7 +52,7 @@ fclose($file);
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand">Gestion Étudiants</a>
-    <a href="dashboard.php" class="btn btn-outline-light">Retour</a>
+    <a href="../main/dashboard.php" class="btn btn-outline-light">Retour</a>
   </div>
 </nav>
 
@@ -68,7 +68,7 @@ fclose($file);
             <h3 class="card-title text-danger">Erreur</h3>
             <p class="card-text">Impossible de trouver l'étudiant avec l'ID <strong><?= htmlspecialchars($id) ?></strong>.</p>
           <?php endif; ?>
-          <a href="dashboard.php" class="btn btn-primary mt-3">Retour au tableau de bord</a>
+          <a href="../main/dashboard.php" class="btn btn-primary mt-3">Retour au tableau de bord</a>
         </div>
       </div>
     </div>

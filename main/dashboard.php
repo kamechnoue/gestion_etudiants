@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!($_SESSION['user'] ?? false)) { 
-    header("Location: index.php"); 
+    header("Location: ../index.php"); 
     exit; 
 }
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_selected'])) {
     $idsToDelete = $_POST['selected'] ?? [];
     if (!empty($idsToDelete)) {
         $rows = [];
-        if (($file = fopen("etudiants.csv", "r")) !== false) {
+        if (($file = fopen("../data/etudiants.csv", "r")) !== false) {
             while (($data = fgetcsv($file)) !== false) {
                 if (!in_array($data[0], $idsToDelete)) {
                     $rows[] = $data;
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_selected'])) {
             }
             fclose($file);
         }
-        $file = fopen("etudiants.csv", "w");
+        $file = fopen("../data/etudiants.csv", "w");
         foreach ($rows as $row) fputcsv($file, $row);
         fclose($file);
         $message = "✅ Suppression effectuée";
@@ -49,13 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
         fclose($handle);
     }
     $existing = [];
-    if (($file = fopen("etudiants.csv", "r")) !== false) {
+    if (($file = fopen("../data/etudiants.csv", "r")) !== false) {
         while (($data = fgetcsv($file)) !== false) {
             $existing[] = strtolower(($data[1] ?? '') . "_" . ($data[2] ?? ''));
         }
         fclose($file);
     }
-    $file = fopen("etudiants.csv", "a");
+    $file = fopen("../data/etudiants.csv", "a");
     foreach ($rows as $row) {
         $nom    = strtolower($row[1] ?? '');
         $prenom = strtolower($row[2] ?? '');
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['new_username'];
         $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
         $role = $_POST['new_role'];
-        $file = fopen("users.csv", "a");
+        $file = fopen("../data/users.csv", "a");
         fputcsv($file, [$username, $password, $role]);
         fclose($file);
         $message = "✅ Utilisateur ajouté";
@@ -89,13 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete_user'])) {
         $username = $_POST['delete_username'];
         $rows = [];
-        if (($file = fopen("users.csv", "r")) !== false) {
+        if (($file = fopen("../data/users.csv", "r")) !== false) {
             while (($data = fgetcsv($file)) !== false) {
                 if ($data[0] !== $username) $rows[] = $data;
             }
             fclose($file);
         }
-        $file = fopen("users.csv", "w");
+        $file = fopen("../data/users.csv", "w");
         foreach ($rows as $row) fputcsv($file, $row);
         fclose($file);
         $message = "✅ Utilisateur supprimé";
@@ -104,14 +104,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['change_username'];
         $newPassword = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
         $rows = [];
-        if (($file = fopen("users.csv", "r")) !== false) {
+        if (($file = fopen("../data/users.csv", "r")) !== false) {
             while (($data = fgetcsv($file)) !== false) {
                 if ($data[0] === $username) $data[1] = $newPassword;
                 $rows[] = $data;
             }
             fclose($file);
         }
-        $file = fopen("users.csv", "w");
+        $file = fopen("../data/users.csv", "w");
         foreach ($rows as $row) fputcsv($file, $row);
         fclose($file);
         $message = "✅ Mot de passe changé";
@@ -120,14 +120,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['role_username'];
         $role = $_POST['role'];
         $rows = [];
-        if (($file = fopen("users.csv", "r")) !== false) {
+        if (($file = fopen("../data/users.csv", "r")) !== false) {
             while (($data = fgetcsv($file)) !== false) {
                 if ($data[0] === $username) $data[2] = $role;
                 $rows[] = $data;
             }
             fclose($file);
         }
-        $file = fopen("users.csv", "w");
+        $file = fopen("../data/users.csv", "w");
         foreach ($rows as $row) fputcsv($file, $row);
         fclose($file);
         $message = "✅ Rôle modifié";
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand">Gestion Étudiants</a>
-    <a href="logout.php" class="btn btn-outline-light">Logout</a>
+    <a href="../auth/logout.php" class="btn btn-outline-light">Logout</a>
   </div>
 </nav>
 
@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </thead>
       <tbody>
         <?php
-        if (($file = fopen("etudiants.csv", "r")) !== false) {
+        if (($file = fopen("../data/etudiants.csv", "r")) !== false) {
           while (($data = fgetcsv($file)) !== false) {
             $id     = $data[0] ?? '';
             $nom    = $data[1] ?? '';
