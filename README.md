@@ -63,7 +63,7 @@ php -S localhost:8000
 
 | Utilisateur | Mot de passe | Rôle  |
 |-------------|--------------|-------|
-| admin       | admin        | Admin |
+| admin       | 123456       | Admin |
 
 Changer le mot de passe dès le premier déploiement via la page de gestion des utilisateurs.
 
@@ -79,9 +79,3 @@ id,nom,prenom,telephone,email,photo
 - Stockage : fichiers CSV
 - Frontend : Tailwind CSS
 - Conteneur : Docker / Apache
-
-## Limitations
-
-- Non adapté à un volume important de données
-- Pas de protection CSRF sur les formulaires
-- Validation du type MIME des uploads à renforcer
