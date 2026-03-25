@@ -70,9 +70,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = "Utilisateur supprime";
     }
 
-    // Import CSV logic remains here...
-    // [Keep your existing Import CSV code block here]
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file'])) {
+        $csvTmp = $_FILES['csv_file']['tmp_name'];
+        $rows = [];
+        if (($handle = fopen($csvTmp, "r")) !== false) {
+            while (($data = fgetcsv($handle)) !== false) $rows[] = $data;
+            fclose($handle);
+        }
+        $existing = [];
+        if (($file = fopen($csvPath, "r")) !== false) {
+            while (($data = fgetcsv($file)) !== false) {
+                $existing[] = strtolower(($data[1] ?? '') . "_" . ($data[2] ?? ''));
+            }
+            fclose($file);
+        }
+        $file = fopen($csvPath, "a");
+        foreach ($rows as $row) {
+            $nom    = strtolower($row[1] ?? '');
+            $prenom = strtolower($row[2] ?? '');
+            $key    = $nom . "_" . $prenom;
+            if (!in_array($key, $existing)) {
+                fputcsv($file, $row);
+                $existing[] = $key;
+            } else {
+                $message .= "Doublon ignoré : $nom $prenom<br>";
+            }
+        }
+        fclose($file);
+        foreach ($_FILES['photos']['tmp_name'] as $index => $tmpName) {
+            $filename = $_FILES['photos']['name'][$index];
+            if ($tmpName) move_uploaded_file($tmpName, "../photos/" . basename($filename));
+        }
+        if (!$message) $message = "Import terminé avec succès";
+    }
 }
+
+
 ?>
 
 <!DOCTYPE html>
