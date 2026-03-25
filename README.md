@@ -63,7 +63,7 @@ php -S localhost:8000
 
 | Utilisateur | Mot de passe | Rôle  |
 |-------------|--------------|-------|
-| admin       | admin        | Admin |
+| admin       | 123456       | Admin |
 
 Changer le mot de passe dès le premier déploiement via la page de gestion des utilisateurs.
 
